@@ -1,5 +1,6 @@
 package com.spelcrawler.neckview;
 
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -11,6 +12,9 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.core.content.ContextCompat;
 
+
+//================================================================================================//
+//================================================================================================//
 public class DrawHelper {
 
     private static final Paint sPaint = new Paint();
@@ -66,6 +70,4 @@ public class DrawHelper {
 
         canvas.drawPath(path, sPaint);
     }
-
-
 }

@@ -1,5 +1,6 @@
 package com.spelcrawler.neckview.parts;
 
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -10,6 +11,9 @@ import androidx.annotation.ColorInt;
 import com.spelcrawler.neckview.DrawHelper;
 import com.spelcrawler.neckview.parts.base.String;
 
+
+//================================================================================================//
+//================================================================================================//
 public class StringColor implements String {
 
     @ColorInt
@@ -38,5 +42,4 @@ public class StringColor implements String {
     public void draw(Context context, Canvas canvas, RectF bounds) {
         throw new RuntimeException("Use draw(Context, Canvas, RectF, boolean) method instead of this");
     }
-
 }

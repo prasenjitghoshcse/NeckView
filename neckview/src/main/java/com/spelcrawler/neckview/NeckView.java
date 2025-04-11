@@ -1,5 +1,6 @@
 package com.spelcrawler.neckview;
 
+
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -17,13 +18,13 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import com.spelcrawler.neckview.model.GuitarString;
-import com.spelcrawler.neckview.parts.BindingCircleColorFretboard;
+import com.spelcrawler.neckview.parts.PositionMarkerInlayCircle;
 import com.spelcrawler.neckview.parts.FretColor;
 import com.spelcrawler.neckview.parts.SideFinishColor;
 import com.spelcrawler.neckview.parts.NutColor;
 import com.spelcrawler.neckview.parts.StringColor;
 import com.spelcrawler.neckview.parts.base.Fret;
-import com.spelcrawler.neckview.parts.base.FretboardBinding;
+import com.spelcrawler.neckview.parts.base.PositionMarkerInlay;
 import com.spelcrawler.neckview.parts.base.SideFinish;
 import com.spelcrawler.neckview.parts.base.Nut;
 import com.spelcrawler.neckview.parts.base.String;
@@ -34,16 +35,18 @@ import com.spelcrawler.neckview.parts.base.NoteMarkAnimatable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NeckView extends View {
 
+//================================================================================================//
+//================================================================================================//
+public class NeckView extends View {
     @NonNull
-    private RectF mBounds = new RectF();
+    private final RectF mBounds = new RectF();
     @NonNull
-    private RectF mFretboardBounds = new RectF();
+    private final RectF mFretboardBounds = new RectF();
     @NonNull
-    private RectF mDrawBounds = new RectF();
+    private final RectF mDrawBounds = new RectF();
     @NonNull
-    private RectF mOldDrawBounds = new RectF();
+    private final RectF mOldDrawBounds = new RectF();
 
     private int mFretCount = 14;
     private boolean mDrawZeroFret = false;
@@ -67,7 +70,7 @@ public class NeckView extends View {
     @Nullable
     private SideFinish mSideFinish = new SideFinishColor();
     @Nullable
-    private FretboardBinding mFretboardBinding = new BindingCircleColorFretboard();
+    private PositionMarkerInlay mPositionMarkerInlay = new PositionMarkerInlayCircle();
     @Nullable
     private String mString = new StringColor();
     @NonNull
@@ -82,9 +85,9 @@ public class NeckView extends View {
 
     //x - fret index, y - string index
     @NonNull
-    private Point mTouchedNote = new Point();
+    private final Point mTouchedNote = new Point();
 
-    private ValueAnimator mValueAnimator = new ValueAnimator();
+    private final ValueAnimator mValueAnimator = new ValueAnimator();
     private float mAnimationValue = 0f;
     private long mAnimationDuration = 300L;
 
@@ -235,12 +238,12 @@ public class NeckView extends View {
     }
 
     @Nullable
-    public FretboardBinding getFretboardBinding() {
-        return mFretboardBinding;
+    public PositionMarkerInlay getFretboardBinding() {
+        return mPositionMarkerInlay;
     }
 
-    public void setFretboardBinding(@Nullable FretboardBinding fretboardBinding) {
-        mFretboardBinding = fretboardBinding;
+    public void setFretboardBinding(@Nullable PositionMarkerInlay positionMarkerInlay) {
+        mPositionMarkerInlay = positionMarkerInlay;
     }
 
     @Nullable
@@ -410,11 +413,11 @@ public class NeckView extends View {
     }
 
     private void drawFretboardBindings(Canvas canvas) {
-        if (mFretboardBinding == null) return;
+        if (mPositionMarkerInlay == null) return;
         for (int fretIndex : mBoundFrets) {
             if (fretIndex < mFretCount) {
                 calculateFretboardBindingBounds(mDrawBounds, mFretPositions, fretIndex);
-                mFretboardBinding.draw(getContext(), canvas, mDrawBounds, fretIndex, mLeftHanded);
+                mPositionMarkerInlay.draw(getContext(), canvas, mDrawBounds, fretIndex, mLeftHanded);
             }
         }
     }
@@ -429,7 +432,7 @@ public class NeckView extends View {
     }
 
     private void drawNoteMarks(Canvas canvas) {
-        if (mOldNoteMarks.size() > 0 && mNoteMarks.size() > 0 && isMarksAnimatable(mOldNoteMarks) && isMarksAnimatable(mNoteMarks)) {
+        if (!mOldNoteMarks.isEmpty() && !mNoteMarks.isEmpty() && isMarksAnimatable(mOldNoteMarks) && isMarksAnimatable(mNoteMarks)) {
             drawAnimatableNoteMarks(canvas);
         } else {
             drawNotAnimatableNoteMarks(canvas);
@@ -594,8 +597,6 @@ public class NeckView extends View {
         return (int) (y / heightForString);
     }
 
-
-
     public interface OnNoteClickListener {
         void onNoteClick(int fret, int string);
     }
@@ -604,5 +605,4 @@ public class NeckView extends View {
         TOP,
         BOTTOM
     }
-
 }

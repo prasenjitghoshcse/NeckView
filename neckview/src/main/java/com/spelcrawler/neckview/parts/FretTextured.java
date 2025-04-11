@@ -1,5 +1,6 @@
 package com.spelcrawler.neckview.parts;
 
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -10,6 +11,9 @@ import androidx.annotation.ColorInt;
 import com.spelcrawler.neckview.DrawHelper;
 import com.spelcrawler.neckview.parts.base.Fret;
 
+
+//================================================================================================//
+//================================================================================================//
 public class FretTextured implements Fret {
 
     @ColorInt
@@ -62,5 +66,4 @@ public class FretTextured implements Fret {
         mShadowBounds.left = bounds.right - bounds.width() / 7f;
         DrawHelper.drawColor(canvas, SHADOW_COLOR, mShadowBounds);
     }
-
 }

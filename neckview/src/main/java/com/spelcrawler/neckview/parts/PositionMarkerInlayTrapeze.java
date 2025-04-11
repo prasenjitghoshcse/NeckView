@@ -1,5 +1,6 @@
 package com.spelcrawler.neckview.parts;
 
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -9,10 +10,12 @@ import android.graphics.RectF;
 import androidx.annotation.ColorInt;
 
 import com.spelcrawler.neckview.DrawHelper;
-import com.spelcrawler.neckview.parts.base.FretboardBinding;
+import com.spelcrawler.neckview.parts.base.PositionMarkerInlay;
 
-public class BindingTrapezeColorFretboard implements FretboardBinding {
 
+//================================================================================================//
+//================================================================================================//
+public class PositionMarkerInlayTrapeze implements PositionMarkerInlay {
     @ColorInt
     private int mColor = Color.WHITE;
     private float mPadding = 25f;
@@ -20,9 +23,9 @@ public class BindingTrapezeColorFretboard implements FretboardBinding {
 
     private final Path mPath = new Path();
 
-    public BindingTrapezeColorFretboard() {}
+    public PositionMarkerInlayTrapeze() {}
 
-    public BindingTrapezeColorFretboard(int color, float padding, float trapezeDegree) {
+    public PositionMarkerInlayTrapeze(int color, float padding, float trapezeDegree) {
         mColor = color;
         mPadding = padding;
         mTrapezeDegree = trapezeDegree;
@@ -82,5 +85,4 @@ public class BindingTrapezeColorFretboard implements FretboardBinding {
         }
         source.close();
     }
-
 }

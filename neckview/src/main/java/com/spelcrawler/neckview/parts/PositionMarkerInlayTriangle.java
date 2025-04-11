@@ -1,5 +1,6 @@
 package com.spelcrawler.neckview.parts;
 
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -9,18 +10,20 @@ import android.graphics.RectF;
 import androidx.annotation.ColorInt;
 
 import com.spelcrawler.neckview.DrawHelper;
-import com.spelcrawler.neckview.parts.base.FretboardBinding;
+import com.spelcrawler.neckview.parts.base.PositionMarkerInlay;
 
-public class BindingTriangleColorFretboard implements FretboardBinding {
 
+//================================================================================================//
+//================================================================================================//
+public class PositionMarkerInlayTriangle implements PositionMarkerInlay {
     @ColorInt
     private int mColor = Color.WHITE;
 
     private final Path mPath = new Path();
 
-    public BindingTriangleColorFretboard() {}
+    public PositionMarkerInlayTriangle() {}
 
-    public BindingTriangleColorFretboard(int color) {
+    public PositionMarkerInlayTriangle(int color) {
         mColor = color;
     }
 
@@ -40,5 +43,4 @@ public class BindingTriangleColorFretboard implements FretboardBinding {
 
         DrawHelper.drawPath(canvas, mPath, mColor);
     }
-
 }

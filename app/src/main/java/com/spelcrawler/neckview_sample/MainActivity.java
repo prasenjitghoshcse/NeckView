@@ -11,15 +11,15 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.spelcrawler.neckview.NeckView;
-import com.spelcrawler.neckview.parts.BindingCircleColorFretboard;
+import com.spelcrawler.neckview.parts.PositionMarkerInlayCircle;
 import com.spelcrawler.neckview.parts.NoteMarkCircle;
 import com.spelcrawler.neckview.parts.SideFinishColor;
 import com.spelcrawler.neckview.parts.NutColor;
 import com.spelcrawler.neckview.parts.FretboardDark;
 import com.spelcrawler.neckview.parts.FretTextured;
 import com.spelcrawler.neckview.parts.StringTextured;
-import com.spelcrawler.neckview.parts.BindingTrapezeColorFretboard;
-import com.spelcrawler.neckview.parts.BindingTriangleColorFretboard;
+import com.spelcrawler.neckview.parts.PositionMarkerInlayTrapeze;
+import com.spelcrawler.neckview.parts.PositionMarkerInlayTriangle;
 import com.spelcrawler.neckview.parts.base.NoteMark;
 
 import java.util.ArrayList;
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements NeckView.OnNoteCl
         neckView.setFretboardTop(new FretboardDark(R.drawable.neck_top));
         neckView.setFret(new FretTextured(ContextCompat.getColor(this, R.color.fretColorGray)));
         neckView.setFretboardFinish(new SideFinishColor(ContextCompat.getColor(this, R.color.white)));
-        neckView.setFretboardBinding(new BindingTriangleColorFretboard(ContextCompat.getColor(this, R.color.white)));
+        neckView.setFretboardBinding(new PositionMarkerInlayTriangle(ContextCompat.getColor(this, R.color.white)));
         neckView.setFretboardString(new StringTextured(ContextCompat.getColor(this, R.color.stringColor)));
         neckView.setBoundFrets(Arrays.asList(1, 3, 5, 7, 9, 12));
 
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements NeckView.OnNoteCl
         neckView.setFretboardNut(new NutColor(ContextCompat.getColor(this, R.color.white)));
         neckView.setFretboardTop(new FretboardDark(R.drawable.neck_top));
         neckView.setFret(new FretTextured(ContextCompat.getColor(this, R.color.fretColorYellow)));
-        neckView.setFretboardBinding(new BindingTrapezeColorFretboard(ContextCompat.getColor(this, R.color.white), 20f, 65f));
+        neckView.setFretboardBinding(new PositionMarkerInlayTrapeze(ContextCompat.getColor(this, R.color.white), 20f, 65f));
         neckView.setFretboardString(new StringTextured(ContextCompat.getColor(this, R.color.stringColor)));
         neckView.setBoundFrets(Arrays.asList(3, 5, 7, 9, 12));
 
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements NeckView.OnNoteCl
         neckView.setFretboardNut(new NutColor(ContextCompat.getColor(this, R.color.white)));
         neckView.setFretboardTop(new FretboardDark(R.drawable.neck_top));
         neckView.setFret(new FretTextured(ContextCompat.getColor(this, R.color.fretColorGray)));
-        neckView.setFretboardBinding(new BindingCircleColorFretboard(ContextCompat.getColor(this, R.color.white), 25f));
+        neckView.setFretboardBinding(new PositionMarkerInlayCircle(ContextCompat.getColor(this, R.color.white), 25f));
         neckView.setFretboardString(new StringTextured(ContextCompat.getColor(this, R.color.stringColor)));
         neckView.setBoundFrets(Arrays.asList(3, 5, 7, 9, 12));
 

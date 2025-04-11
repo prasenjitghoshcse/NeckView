@@ -1,5 +1,6 @@
 package com.spelcrawler.neckview.parts;
 
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -10,11 +11,12 @@ import androidx.annotation.ColorInt;
 import com.spelcrawler.neckview.DrawHelper;
 import com.spelcrawler.neckview.parts.base.Fret;
 
-public class FretColor implements Fret {
 
+//================================================================================================//
+//================================================================================================//
+public class FretColor implements Fret {
     @ColorInt
     private int mColor = Color.YELLOW;
-
 
     public FretColor() {}
 
@@ -34,5 +36,4 @@ public class FretColor implements Fret {
     public void draw(Context context, Canvas canvas, RectF bounds) {
         DrawHelper.drawColor(canvas, mColor, bounds);
     }
-
 }

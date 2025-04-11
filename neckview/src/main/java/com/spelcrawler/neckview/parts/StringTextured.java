@@ -1,5 +1,6 @@
 package com.spelcrawler.neckview.parts;
 
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
@@ -9,6 +10,9 @@ import androidx.annotation.ColorInt;
 import com.spelcrawler.neckview.DrawHelper;
 import com.spelcrawler.neckview.parts.base.String;
 
+
+//================================================================================================//
+//================================================================================================//
 public class StringTextured implements String {
 
     @ColorInt
@@ -19,8 +23,6 @@ public class StringTextured implements String {
     private float mWoundWidth = 10f;
 
     private RectF mShadowBounds = new RectF();
-
-
 
     public StringTextured(int stringColor) {
         mStringColor = stringColor;
@@ -88,5 +90,4 @@ public class StringTextured implements String {
     public void draw(Context context, Canvas canvas, RectF bounds) {
         throw new RuntimeException("Use draw(Context, Canvas, RectF, boolean) method instead of this");
     }
-
 }

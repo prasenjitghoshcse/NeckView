@@ -1,5 +1,6 @@
 package com.spelcrawler.neckview.parts;
 
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -10,6 +11,9 @@ import androidx.annotation.ColorInt;
 import com.spelcrawler.neckview.DrawHelper;
 import com.spelcrawler.neckview.parts.base.Nut;
 
+
+//================================================================================================//
+//================================================================================================//
 public class NutColor implements Nut {
 
     @ColorInt
@@ -33,5 +37,4 @@ public class NutColor implements Nut {
     public void draw(Context context, Canvas canvas, RectF bounds) {
         DrawHelper.drawColor(canvas, mColor, bounds);
     }
-
 }

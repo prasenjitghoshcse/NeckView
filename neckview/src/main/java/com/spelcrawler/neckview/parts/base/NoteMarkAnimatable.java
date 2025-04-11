@@ -1,14 +1,17 @@
 package com.spelcrawler.neckview.parts.base;
 
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
 import androidx.annotation.Nullable;
 
-public abstract class NoteMarkAnimatable<T extends NoteMarkAnimatable<T>> extends NoteMark {
 
-    private static RectF sBounds = new RectF();
+//================================================================================================//
+//================================================================================================//
+public abstract class NoteMarkAnimatable<T extends NoteMarkAnimatable<T>> extends NoteMark {
+    private static final RectF sBounds = new RectF();
 
     public NoteMarkAnimatable(int fret, int string) {
         super(fret, string);
@@ -29,5 +32,4 @@ public abstract class NoteMarkAnimatable<T extends NoteMarkAnimatable<T>> extend
     }
 
     public abstract void draw(Context context, Canvas canvas, RectF bounds, @Nullable T fromMark, float animationPercent);
-
 }

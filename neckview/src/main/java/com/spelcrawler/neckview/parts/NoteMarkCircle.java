@@ -1,5 +1,6 @@
 package com.spelcrawler.neckview.parts;
 
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -13,8 +14,10 @@ import androidx.core.graphics.ColorUtils;
 import com.spelcrawler.neckview.DrawHelper;
 import com.spelcrawler.neckview.parts.base.NoteMarkAnimatable;
 
-public class NoteMarkCircle extends NoteMarkAnimatable<NoteMarkCircle> {
 
+//================================================================================================//
+//================================================================================================//
+public class NoteMarkCircle extends NoteMarkAnimatable<NoteMarkCircle> {
     @ColorInt
     private int mMarkColor = Color.RED;
     @ColorInt
@@ -97,7 +100,4 @@ public class NoteMarkCircle extends NoteMarkAnimatable<NoteMarkCircle> {
     private @ColorInt int getColorWithAlpha(@ColorInt int color, float alpha) {
         return Color.argb((int) (255 * alpha), Color.red(color), Color.green(color), Color.blue(color));
     }
-
-
-
 }

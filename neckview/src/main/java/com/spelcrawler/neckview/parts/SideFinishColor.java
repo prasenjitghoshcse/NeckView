@@ -1,5 +1,6 @@
 package com.spelcrawler.neckview.parts;
 
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -7,10 +8,13 @@ import android.graphics.RectF;
 
 import androidx.annotation.ColorInt;
 
+import com.spelcrawler.neckview.DrawHelper;
 import com.spelcrawler.neckview.parts.base.SideFinish;
 
-public class SideFinishColor implements SideFinish {
 
+//================================================================================================//
+//================================================================================================//
+public class SideFinishColor implements SideFinish {
     @ColorInt
     private int mColor = Color.WHITE;
 
@@ -30,7 +34,6 @@ public class SideFinishColor implements SideFinish {
 
     @Override
     public void draw(Context context, Canvas canvas, RectF bounds) {
-//        Drawer.drawColor(canvas, mColor, bounds);
+        DrawHelper.drawColor(canvas, mColor, bounds);
     }
-
 }

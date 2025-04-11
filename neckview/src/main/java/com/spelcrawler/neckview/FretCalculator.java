@@ -1,9 +1,9 @@
 package com.spelcrawler.neckview;
 
-import java.util.Arrays;
 
+//================================================================================================//
+//================================================================================================//
 public class FretCalculator {
-
     private static final float FRET_CONSTANT = 17.817F;
 
     /**
@@ -26,15 +26,6 @@ public class FretCalculator {
         return frets;
     }
 
-    private static float[] reverseFrets(float[] frets) {
-        float[] result = new float[frets.length];
-        for (int i = 0; i < frets.length; i++) {
-            result[i] = frets[frets.length - 1 - i];
-        }
-
-        return result;
-    }
-
     private static float[] calculate(float fretboardWidth, int fretCount) {
         float[] frets = new float[fretCount];
 
@@ -50,6 +41,12 @@ public class FretCalculator {
         return frets;
     }
 
+    private static float[] reverseFrets(float[] frets) {
+        float[] result = new float[frets.length];
+        for (int i = 0; i < frets.length; i++) {
+            result[i] = frets[frets.length - 1 - i];
+        }
 
-
+        return result;
+    }
 }

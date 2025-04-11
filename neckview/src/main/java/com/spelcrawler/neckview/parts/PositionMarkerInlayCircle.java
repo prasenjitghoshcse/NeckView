@@ -1,5 +1,6 @@
 package com.spelcrawler.neckview.parts;
 
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -8,16 +9,19 @@ import android.graphics.RectF;
 import androidx.annotation.ColorInt;
 
 import com.spelcrawler.neckview.DrawHelper;
-import com.spelcrawler.neckview.parts.base.FretboardBinding;
+import com.spelcrawler.neckview.parts.base.PositionMarkerInlay;
 
-public class BindingCircleColorFretboard implements FretboardBinding {
+
+//================================================================================================//
+//================================================================================================//
+public class PositionMarkerInlayCircle implements PositionMarkerInlay {
 
     private int mColor = Color.WHITE;
     private float mRadius = 30f;
 
-    public BindingCircleColorFretboard() {}
+    public PositionMarkerInlayCircle() {}
 
-    public BindingCircleColorFretboard(@ColorInt int color, float radius) {
+    public PositionMarkerInlayCircle(@ColorInt int color, float radius) {
         mColor = color;
         mRadius = radius;
     }
@@ -49,5 +53,4 @@ public class BindingCircleColorFretboard implements FretboardBinding {
             DrawHelper.drawCircle(canvas, bounds.centerX(), bounds.centerY(), mRadius, mColor);
         }
     }
-
 }

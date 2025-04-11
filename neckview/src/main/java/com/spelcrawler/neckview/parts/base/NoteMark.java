@@ -1,7 +1,9 @@
 package com.spelcrawler.neckview.parts.base;
 
-public abstract class NoteMark implements FretboardPart {
 
+//================================================================================================//
+//================================================================================================//
+public abstract class NoteMark implements FretboardPart {
     private final int mFret;
     private final int mString;
 
@@ -17,5 +19,4 @@ public abstract class NoteMark implements FretboardPart {
     public int getString() {
         return mString;
     }
-
 }

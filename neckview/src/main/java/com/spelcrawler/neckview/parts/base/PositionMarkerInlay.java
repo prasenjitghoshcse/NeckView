@@ -8,6 +8,6 @@ import android.graphics.RectF;
 
 //================================================================================================//
 //================================================================================================//
-public interface String extends FretboardPart {
-    void draw(Context context, Canvas canvas, RectF bounds, boolean wounded);
+public interface PositionMarkerInlay {
+    void draw(Context context, Canvas canvas, RectF bounds, int fretIndex, boolean leftHanded);
 }
