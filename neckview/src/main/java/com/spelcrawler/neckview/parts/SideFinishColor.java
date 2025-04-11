@@ -7,17 +7,16 @@ import android.graphics.RectF;
 
 import androidx.annotation.ColorInt;
 
-import com.spelcrawler.neckview.Drawer;
-import com.spelcrawler.neckview.parts.base.FretboardNut;
+import com.spelcrawler.neckview.parts.base.SideFinish;
 
-public class ColorFretboardNut implements FretboardNut {
+public class SideFinishColor implements SideFinish {
 
     @ColorInt
     private int mColor = Color.WHITE;
 
-    public ColorFretboardNut() {}
+    public SideFinishColor() {}
 
-    public ColorFretboardNut(int color) {
+    public SideFinishColor(int color) {
         mColor = color;
     }
 
@@ -31,7 +30,7 @@ public class ColorFretboardNut implements FretboardNut {
 
     @Override
     public void draw(Context context, Canvas canvas, RectF bounds) {
-        Drawer.drawColor(canvas, mColor, bounds);
+//        Drawer.drawColor(canvas, mColor, bounds);
     }
 
 }

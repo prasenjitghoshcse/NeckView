@@ -10,11 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.graphics.ColorUtils;
 
-import com.spelcrawler.neckview.Drawer;
-import com.spelcrawler.neckview.parts.base.NoteMark;
+import com.spelcrawler.neckview.DrawHelper;
 import com.spelcrawler.neckview.parts.base.NoteMarkAnimatable;
 
-public class CircleNoteMark extends NoteMarkAnimatable<CircleNoteMark> {
+public class NoteMarkCircle extends NoteMarkAnimatable<NoteMarkCircle> {
 
     @ColorInt
     private int mMarkColor = Color.RED;
@@ -25,7 +24,7 @@ public class CircleNoteMark extends NoteMarkAnimatable<CircleNoteMark> {
     private float mMarkRadius = 35f;
     private float mTextSize = 48f;
 
-    public CircleNoteMark(int fret, int string) {
+    public NoteMarkCircle(int fret, int string) {
         super(fret, string);
     }
 
@@ -71,10 +70,10 @@ public class CircleNoteMark extends NoteMarkAnimatable<CircleNoteMark> {
     }
 
     @Override
-    public void draw(Context context, Canvas canvas, RectF bounds, @Nullable CircleNoteMark fromMark, float animationPercent) {
+    public void draw(Context context, Canvas canvas, RectF bounds, @Nullable NoteMarkCircle fromMark, float animationPercent) {
         if (fromMark == null || fromMark == this) {
-            Drawer.drawCircle(canvas, bounds.centerX(), bounds.centerY(), mMarkRadius, getColorWithAlpha(mMarkColor, 1));
-            Drawer.drawText(canvas, bounds.centerX(), bounds.centerY(), mTextSize, mText, getColorWithAlpha(mTextColor, 1));
+            DrawHelper.drawCircle(canvas, bounds.centerX(), bounds.centerY(), mMarkRadius, getColorWithAlpha(mMarkColor, 1));
+            DrawHelper.drawText(canvas, bounds.centerX(), bounds.centerY(), mTextSize, mText, getColorWithAlpha(mTextColor, 1));
             return;
         }
 
@@ -91,8 +90,8 @@ public class CircleNoteMark extends NoteMarkAnimatable<CircleNoteMark> {
         float textSize = fromMark.getTextSize() + (getTextSize() - fromMark.getTextSize()) * animationPercent;
         float markRadius = fromMark.getMarkRadius() + (getMarkRadius() - fromMark.getMarkRadius()) * animationPercent;
 
-        Drawer.drawCircle(canvas, bounds.centerX(), bounds.centerY(), markRadius, markColor);
-        Drawer.drawText(canvas, bounds.centerX(), bounds.centerY(), textSize, text, textColor);
+        DrawHelper.drawCircle(canvas, bounds.centerX(), bounds.centerY(), markRadius, markColor);
+        DrawHelper.drawText(canvas, bounds.centerX(), bounds.centerY(), textSize, text, textColor);
     }
 
     private @ColorInt int getColorWithAlpha(@ColorInt int color, float alpha) {

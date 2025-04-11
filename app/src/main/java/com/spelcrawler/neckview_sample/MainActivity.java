@@ -3,7 +3,6 @@ package com.spelcrawler.neckview_sample;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -12,15 +11,15 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.spelcrawler.neckview.NeckView;
-import com.spelcrawler.neckview.parts.CircleColorFretboardBinding;
-import com.spelcrawler.neckview.parts.CircleNoteMark;
-import com.spelcrawler.neckview.parts.ColorFretboardFinish;
-import com.spelcrawler.neckview.parts.ColorFretboardNut;
-import com.spelcrawler.neckview.parts.DrawableFretboardTop;
-import com.spelcrawler.neckview.parts.TexturedFret;
-import com.spelcrawler.neckview.parts.TexturedFretboardString;
-import com.spelcrawler.neckview.parts.TrapezeColorFretboardBinding;
-import com.spelcrawler.neckview.parts.TriangleColorFretboardBinding;
+import com.spelcrawler.neckview.parts.BindingCircleColorFretboard;
+import com.spelcrawler.neckview.parts.NoteMarkCircle;
+import com.spelcrawler.neckview.parts.SideFinishColor;
+import com.spelcrawler.neckview.parts.NutColor;
+import com.spelcrawler.neckview.parts.FretboardDark;
+import com.spelcrawler.neckview.parts.FretTextured;
+import com.spelcrawler.neckview.parts.StringTextured;
+import com.spelcrawler.neckview.parts.BindingTrapezeColorFretboard;
+import com.spelcrawler.neckview.parts.BindingTriangleColorFretboard;
 import com.spelcrawler.neckview.parts.base.NoteMark;
 
 import java.util.ArrayList;
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NeckView.OnNoteCl
         for (int i = 0; i < count; i++) {
             int fret = random.nextInt(14);
             int string = random.nextInt(5);
-            CircleNoteMark mark = new CircleNoteMark(fret, string);
+            NoteMarkCircle mark = new NoteMarkCircle(fret, string);
             mark.setText(String.valueOf((i % 6) + 1));
             mark.setMarkColor(i % 6 == 0 ? Color.RED : Color.GREEN);
 
@@ -73,12 +72,12 @@ public class MainActivity extends AppCompatActivity implements NeckView.OnNoteCl
     private void setupJackson(NeckView neckView) {
         neckView.setupGuitarStrings(6, 3, R.dimen.stringGauge9, R.dimen.stringGauge48);
 
-        neckView.setFretboardNut(new ColorFretboardNut(ContextCompat.getColor(this, R.color.black)));
-        neckView.setFretboardTop(new DrawableFretboardTop(R.drawable.neck_top));
-        neckView.setFret(new TexturedFret(ContextCompat.getColor(this, R.color.fretColorGray)));
-        neckView.setFretboardFinish(new ColorFretboardFinish(ContextCompat.getColor(this, R.color.white)));
-        neckView.setFretboardBinding(new TriangleColorFretboardBinding(ContextCompat.getColor(this, R.color.white)));
-        neckView.setFretboardString(new TexturedFretboardString(ContextCompat.getColor(this, R.color.stringColor)));
+        neckView.setFretboardNut(new NutColor(ContextCompat.getColor(this, R.color.black)));
+        neckView.setFretboardTop(new FretboardDark(R.drawable.neck_top));
+        neckView.setFret(new FretTextured(ContextCompat.getColor(this, R.color.fretColorGray)));
+        neckView.setFretboardFinish(new SideFinishColor(ContextCompat.getColor(this, R.color.white)));
+        neckView.setFretboardBinding(new BindingTriangleColorFretboard(ContextCompat.getColor(this, R.color.white)));
+        neckView.setFretboardString(new StringTextured(ContextCompat.getColor(this, R.color.stringColor)));
         neckView.setBoundFrets(Arrays.asList(1, 3, 5, 7, 9, 12));
 
         neckView.requestLayout();
@@ -88,11 +87,11 @@ public class MainActivity extends AppCompatActivity implements NeckView.OnNoteCl
     private void setupGibson(NeckView neckView) {
         neckView.setupGuitarStrings(6, 3, R.dimen.stringGauge9, R.dimen.stringGauge48);
 
-        neckView.setFretboardNut(new ColorFretboardNut(ContextCompat.getColor(this, R.color.white)));
-        neckView.setFretboardTop(new DrawableFretboardTop(R.drawable.neck_top));
-        neckView.setFret(new TexturedFret(ContextCompat.getColor(this, R.color.fretColorYellow)));
-        neckView.setFretboardBinding(new TrapezeColorFretboardBinding(ContextCompat.getColor(this, R.color.white), 20f, 65f));
-        neckView.setFretboardString(new TexturedFretboardString(ContextCompat.getColor(this, R.color.stringColor)));
+        neckView.setFretboardNut(new NutColor(ContextCompat.getColor(this, R.color.white)));
+        neckView.setFretboardTop(new FretboardDark(R.drawable.neck_top));
+        neckView.setFret(new FretTextured(ContextCompat.getColor(this, R.color.fretColorYellow)));
+        neckView.setFretboardBinding(new BindingTrapezeColorFretboard(ContextCompat.getColor(this, R.color.white), 20f, 65f));
+        neckView.setFretboardString(new StringTextured(ContextCompat.getColor(this, R.color.stringColor)));
         neckView.setBoundFrets(Arrays.asList(3, 5, 7, 9, 12));
 
         neckView.requestLayout();
@@ -102,11 +101,11 @@ public class MainActivity extends AppCompatActivity implements NeckView.OnNoteCl
     private void setupBass(NeckView neckView) {
         neckView.setupGuitarStrings(4, 4, R.dimen.stringGauge30, R.dimen.stringGauge105);
 
-        neckView.setFretboardNut(new ColorFretboardNut(ContextCompat.getColor(this, R.color.white)));
-        neckView.setFretboardTop(new DrawableFretboardTop(R.drawable.neck_top));
-        neckView.setFret(new TexturedFret(ContextCompat.getColor(this, R.color.fretColorGray)));
-        neckView.setFretboardBinding(new CircleColorFretboardBinding(ContextCompat.getColor(this, R.color.white), 25f));
-        neckView.setFretboardString(new TexturedFretboardString(ContextCompat.getColor(this, R.color.stringColor)));
+        neckView.setFretboardNut(new NutColor(ContextCompat.getColor(this, R.color.white)));
+        neckView.setFretboardTop(new FretboardDark(R.drawable.neck_top));
+        neckView.setFret(new FretTextured(ContextCompat.getColor(this, R.color.fretColorGray)));
+        neckView.setFretboardBinding(new BindingCircleColorFretboard(ContextCompat.getColor(this, R.color.white), 25f));
+        neckView.setFretboardString(new StringTextured(ContextCompat.getColor(this, R.color.stringColor)));
         neckView.setBoundFrets(Arrays.asList(3, 5, 7, 9, 12));
 
         neckView.requestLayout();

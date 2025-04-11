@@ -11,7 +11,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.core.content.ContextCompat;
 
-public class Drawer {
+public class DrawHelper {
 
     private static final Paint sPaint = new Paint();
 

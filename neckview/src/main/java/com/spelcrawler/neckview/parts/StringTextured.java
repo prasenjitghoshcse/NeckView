@@ -2,15 +2,14 @@ package com.spelcrawler.neckview.parts;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.RectF;
 
 import androidx.annotation.ColorInt;
 
-import com.spelcrawler.neckview.Drawer;
-import com.spelcrawler.neckview.parts.base.FretboardString;
+import com.spelcrawler.neckview.DrawHelper;
+import com.spelcrawler.neckview.parts.base.String;
 
-public class TexturedFretboardString implements FretboardString {
+public class StringTextured implements String {
 
     @ColorInt
     private static final int SHADOW_COLOR = 0x50000000;
@@ -23,7 +22,7 @@ public class TexturedFretboardString implements FretboardString {
 
 
 
-    public TexturedFretboardString(int stringColor) {
+    public StringTextured(int stringColor) {
         mStringColor = stringColor;
     }
 
@@ -53,12 +52,12 @@ public class TexturedFretboardString implements FretboardString {
     }
 
     private void drawWounded(Canvas canvas, RectF bounds) {
-        Drawer.drawColor(canvas, mStringColor, bounds);
+        DrawHelper.drawColor(canvas, mStringColor, bounds);
 
         float woundWidth = bounds.height() * 0.3f;
 
         for (float position = bounds.left; position < bounds.right; position += woundWidth) {
-            Drawer.drawLine(canvas, position, bounds.top, position, bounds.bottom, SHADOW_COLOR, 2f);
+            DrawHelper.drawLine(canvas, position, bounds.top, position, bounds.bottom, SHADOW_COLOR, 2f);
         }
 
         drawShadows(canvas, bounds);
@@ -67,21 +66,21 @@ public class TexturedFretboardString implements FretboardString {
     private void drawShadows(Canvas canvas, RectF bounds) {
         mShadowBounds.set(bounds);
         mShadowBounds.bottom = bounds.top + bounds.height() / 2.5f;
-        Drawer.drawColor(canvas, SHADOW_COLOR, mShadowBounds);
+        DrawHelper.drawColor(canvas, SHADOW_COLOR, mShadowBounds);
         mShadowBounds.set(bounds);
         mShadowBounds.top = bounds.bottom - bounds.height() / 2.5f;
-        Drawer.drawColor(canvas, SHADOW_COLOR, mShadowBounds);
+        DrawHelper.drawColor(canvas, SHADOW_COLOR, mShadowBounds);
 
         mShadowBounds.set(bounds);
         mShadowBounds.bottom = bounds.top + bounds.height() / 4;
-        Drawer.drawColor(canvas, SHADOW_COLOR, mShadowBounds);
+        DrawHelper.drawColor(canvas, SHADOW_COLOR, mShadowBounds);
         mShadowBounds.set(bounds);
         mShadowBounds.top = bounds.bottom - bounds.height() / 4;
-        Drawer.drawColor(canvas, SHADOW_COLOR, mShadowBounds);
+        DrawHelper.drawColor(canvas, SHADOW_COLOR, mShadowBounds);
     }
 
     private void drawSimple(Canvas canvas, RectF bounds) {
-        Drawer.drawColor(canvas, mStringColor, bounds);
+        DrawHelper.drawColor(canvas, mStringColor, bounds);
         drawShadows(canvas, bounds);
     }
 

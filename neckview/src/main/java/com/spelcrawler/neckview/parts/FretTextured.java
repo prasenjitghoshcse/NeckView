@@ -7,10 +7,10 @@ import android.graphics.RectF;
 
 import androidx.annotation.ColorInt;
 
-import com.spelcrawler.neckview.Drawer;
+import com.spelcrawler.neckview.DrawHelper;
 import com.spelcrawler.neckview.parts.base.Fret;
 
-public class TexturedFret implements Fret {
+public class FretTextured implements Fret {
 
     @ColorInt
     private static final int SHADOW_COLOR = 0x50000000;
@@ -19,9 +19,9 @@ public class TexturedFret implements Fret {
     @ColorInt
     private int mColor = Color.YELLOW;
 
-    public TexturedFret() {}
+    public FretTextured() {}
 
-    public TexturedFret(int color) {
+    public FretTextured(int color) {
         mColor = color;
     }
 
@@ -43,24 +43,24 @@ public class TexturedFret implements Fret {
 
     @Override
     public void draw(Context context, Canvas canvas, RectF bounds) {
-        Drawer.drawColor(canvas, mColor, bounds);
+        DrawHelper.drawColor(canvas, mColor, bounds);
         drawShadows(canvas, bounds);
     }
 
     private void drawShadows(Canvas canvas, RectF bounds) {
         mShadowBounds.set(bounds);
         mShadowBounds.right = bounds.left + bounds.width() / 4.5f;
-        Drawer.drawColor(canvas, SHADOW_COLOR, mShadowBounds);
+        DrawHelper.drawColor(canvas, SHADOW_COLOR, mShadowBounds);
         mShadowBounds.set(bounds);
         mShadowBounds.left = bounds.right - bounds.width() / 4.5f;
-        Drawer.drawColor(canvas, SHADOW_COLOR, mShadowBounds);
+        DrawHelper.drawColor(canvas, SHADOW_COLOR, mShadowBounds);
 
         mShadowBounds.set(bounds);
         mShadowBounds.right = bounds.left + bounds.width() / 7f;
-        Drawer.drawColor(canvas, SHADOW_COLOR, mShadowBounds);
+        DrawHelper.drawColor(canvas, SHADOW_COLOR, mShadowBounds);
         mShadowBounds.set(bounds);
         mShadowBounds.left = bounds.right - bounds.width() / 7f;
-        Drawer.drawColor(canvas, SHADOW_COLOR, mShadowBounds);
+        DrawHelper.drawColor(canvas, SHADOW_COLOR, mShadowBounds);
     }
 
 }

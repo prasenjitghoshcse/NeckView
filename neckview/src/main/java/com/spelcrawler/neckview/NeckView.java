@@ -17,17 +17,17 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import com.spelcrawler.neckview.model.GuitarString;
-import com.spelcrawler.neckview.parts.CircleColorFretboardBinding;
-import com.spelcrawler.neckview.parts.ColorFret;
-import com.spelcrawler.neckview.parts.ColorFretboardFinish;
-import com.spelcrawler.neckview.parts.ColorFretboardNut;
-import com.spelcrawler.neckview.parts.ColorFretboardString;
+import com.spelcrawler.neckview.parts.BindingCircleColorFretboard;
+import com.spelcrawler.neckview.parts.FretColor;
+import com.spelcrawler.neckview.parts.SideFinishColor;
+import com.spelcrawler.neckview.parts.NutColor;
+import com.spelcrawler.neckview.parts.StringColor;
 import com.spelcrawler.neckview.parts.base.Fret;
 import com.spelcrawler.neckview.parts.base.FretboardBinding;
-import com.spelcrawler.neckview.parts.base.FretboardFinish;
-import com.spelcrawler.neckview.parts.base.FretboardNut;
-import com.spelcrawler.neckview.parts.base.FretboardString;
-import com.spelcrawler.neckview.parts.base.FretboardTop;
+import com.spelcrawler.neckview.parts.base.SideFinish;
+import com.spelcrawler.neckview.parts.base.Nut;
+import com.spelcrawler.neckview.parts.base.String;
+import com.spelcrawler.neckview.parts.base.Fretboard;
 import com.spelcrawler.neckview.parts.base.NoteMark;
 import com.spelcrawler.neckview.parts.base.NoteMarkAnimatable;
 
@@ -59,17 +59,17 @@ public class NeckView extends View {
     private float[] mFretPositions;
 
     @Nullable
-    private FretboardTop mFretboardTop = null;
+    private Fretboard mFretboard = null;
     @Nullable
-    private FretboardNut mFretboardNut = new ColorFretboardNut();
+    private Nut mNut = new NutColor();
     @Nullable
-    private Fret mFret = new ColorFret();
+    private Fret mFret = new FretColor();
     @Nullable
-    private FretboardFinish mFretboardFinish = new ColorFretboardFinish();
+    private SideFinish mSideFinish = new SideFinishColor();
     @Nullable
-    private FretboardBinding mFretboardBinding = new CircleColorFretboardBinding();
+    private FretboardBinding mFretboardBinding = new BindingCircleColorFretboard();
     @Nullable
-    private FretboardString mFretboardString = new ColorFretboardString();
+    private String mString = new StringColor();
     @NonNull
     private List<? extends NoteMark> mNoteMarks = new ArrayList<>();
 
@@ -199,21 +199,21 @@ public class NeckView extends View {
     }
 
     @Nullable
-    public FretboardTop getFretboardTop() {
-        return mFretboardTop;
+    public Fretboard getFretboardTop() {
+        return mFretboard;
     }
 
-    public void setFretboardTop(@Nullable FretboardTop fretboardTop) {
-        mFretboardTop = fretboardTop;
+    public void setFretboardTop(@Nullable Fretboard fretboard) {
+        mFretboard = fretboard;
     }
 
     @Nullable
-    public FretboardNut getFretboardNut() {
-        return mFretboardNut;
+    public Nut getFretboardNut() {
+        return mNut;
     }
 
-    public void setFretboardNut(@Nullable FretboardNut fretboardNut) {
-        mFretboardNut = fretboardNut;
+    public void setFretboardNut(@Nullable Nut nut) {
+        mNut = nut;
     }
 
     @Nullable
@@ -226,12 +226,12 @@ public class NeckView extends View {
     }
 
     @Nullable
-    public FretboardFinish getFretboardFinish() {
-        return mFretboardFinish;
+    public SideFinish getFretboardFinish() {
+        return mSideFinish;
     }
 
-    public void setFretboardFinish(@Nullable FretboardFinish fretboardFinish) {
-        mFretboardFinish = fretboardFinish;
+    public void setFretboardFinish(@Nullable SideFinish sideFinish) {
+        mSideFinish = sideFinish;
     }
 
     @Nullable
@@ -244,12 +244,12 @@ public class NeckView extends View {
     }
 
     @Nullable
-    public FretboardString getFretboardString() {
-        return mFretboardString;
+    public String getFretboardString() {
+        return mString;
     }
 
-    public void setFretboardString(@Nullable FretboardString fretboardString) {
-        mFretboardString = fretboardString;
+    public void setFretboardString(@Nullable String string) {
+        mString = string;
     }
 
     @NonNull
@@ -381,23 +381,23 @@ public class NeckView extends View {
     }
 
     private void drawFretboardTop(Canvas canvas) {
-        if (mFretboardTop == null) return;
+        if (mFretboard == null) return;
         calculateFretboardTopBounds(mDrawBounds);
-        mFretboardTop.draw(getContext(), canvas, mDrawBounds);
+        mFretboard.draw(getContext(), canvas, mDrawBounds);
     }
 
     private void drawFretboardFinish(Canvas canvas) {
-        if (mFretboardFinish == null) return;
+        if (mSideFinish == null) return;
         calculateFretboardFinishBounds(mDrawBounds, FretboardFinishPosition.TOP);
-        mFretboardFinish.draw(getContext(), canvas, mDrawBounds);
+        mSideFinish.draw(getContext(), canvas, mDrawBounds);
         calculateFretboardFinishBounds(mDrawBounds, FretboardFinishPosition.BOTTOM);
-        mFretboardFinish.draw(getContext(), canvas, mDrawBounds);
+        mSideFinish.draw(getContext(), canvas, mDrawBounds);
     }
 
     private void drawNut(Canvas canvas) {
-        if (mFretboardNut == null) return;
+        if (mNut == null) return;
         calculateNutBounds(mDrawBounds);
-        mFretboardNut.draw(getContext(), canvas, mDrawBounds);
+        mNut.draw(getContext(), canvas, mDrawBounds);
     }
 
     private void drawFrets(Canvas canvas) {
@@ -420,11 +420,11 @@ public class NeckView extends View {
     }
 
     private void drawStrings(Canvas canvas) {
-        if (mFretboardString == null) return;
+        if (mString == null) return;
         for (int i = 0; i < mGuitarStrings.size(); i++) {
             calculateStringBounds(mDrawBounds, i);
             GuitarString string = mGuitarStrings.get(i);
-            mFretboardString.draw(getContext(), canvas, mDrawBounds, string.isWounded());
+            mString.draw(getContext(), canvas, mDrawBounds, string.isWounded());
         }
     }
 

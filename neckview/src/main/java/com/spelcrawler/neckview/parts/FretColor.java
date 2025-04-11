@@ -7,17 +7,18 @@ import android.graphics.RectF;
 
 import androidx.annotation.ColorInt;
 
-import com.spelcrawler.neckview.Drawer;
-import com.spelcrawler.neckview.parts.base.FretboardString;
+import com.spelcrawler.neckview.DrawHelper;
+import com.spelcrawler.neckview.parts.base.Fret;
 
-public class ColorFretboardString implements FretboardString {
+public class FretColor implements Fret {
 
     @ColorInt
     private int mColor = Color.YELLOW;
 
-    public ColorFretboardString() {}
 
-    public ColorFretboardString(int color) {
+    public FretColor() {}
+
+    public FretColor(int color) {
         mColor = color;
     }
 
@@ -30,13 +31,8 @@ public class ColorFretboardString implements FretboardString {
     }
 
     @Override
-    public void draw(Context context, Canvas canvas, RectF bounds, boolean wounded) {
-        Drawer.drawColor(canvas, mColor, bounds);
-    }
-
-    @Override
     public void draw(Context context, Canvas canvas, RectF bounds) {
-        throw new RuntimeException("Use draw(Context, Canvas, RectF, boolean) method instead of this");
+        DrawHelper.drawColor(canvas, mColor, bounds);
     }
 
 }

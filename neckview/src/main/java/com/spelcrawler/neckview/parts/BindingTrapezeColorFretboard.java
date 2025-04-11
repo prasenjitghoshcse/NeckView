@@ -8,10 +8,10 @@ import android.graphics.RectF;
 
 import androidx.annotation.ColorInt;
 
-import com.spelcrawler.neckview.Drawer;
+import com.spelcrawler.neckview.DrawHelper;
 import com.spelcrawler.neckview.parts.base.FretboardBinding;
 
-public class TrapezeColorFretboardBinding implements FretboardBinding {
+public class BindingTrapezeColorFretboard implements FretboardBinding {
 
     @ColorInt
     private int mColor = Color.WHITE;
@@ -20,9 +20,9 @@ public class TrapezeColorFretboardBinding implements FretboardBinding {
 
     private final Path mPath = new Path();
 
-    public TrapezeColorFretboardBinding() {}
+    public BindingTrapezeColorFretboard() {}
 
-    public TrapezeColorFretboardBinding(int color, float padding, float trapezeDegree) {
+    public BindingTrapezeColorFretboard(int color, float padding, float trapezeDegree) {
         mColor = color;
         mPadding = padding;
         mTrapezeDegree = trapezeDegree;
@@ -61,7 +61,7 @@ public class TrapezeColorFretboardBinding implements FretboardBinding {
 
         setupTrapezePath(mPath, bounds, mTrapezeDegree, leftHanded);
 
-        Drawer.drawPath(canvas, mPath, mColor);
+        DrawHelper.drawPath(canvas, mPath, mColor);
     }
 
     private void setupTrapezePath(Path source, RectF bounds, float degree, boolean leftHanded) {

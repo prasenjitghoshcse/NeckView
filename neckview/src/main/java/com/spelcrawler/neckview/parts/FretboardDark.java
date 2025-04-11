@@ -6,21 +6,21 @@ import android.graphics.RectF;
 
 import androidx.annotation.DrawableRes;
 
-import com.spelcrawler.neckview.Drawer;
-import com.spelcrawler.neckview.parts.base.FretboardTop;
+import com.spelcrawler.neckview.DrawHelper;
+import com.spelcrawler.neckview.parts.base.Fretboard;
 
-public class DrawableFretboardTop implements FretboardTop {
+public class FretboardDark implements Fretboard {
 
     @DrawableRes
     private final int mDrawableRes;
 
-    public DrawableFretboardTop(int drawableRes) {
+    public FretboardDark(int drawableRes) {
         mDrawableRes = drawableRes;
     }
 
     @Override
     public void draw(Context context, Canvas canvas, RectF bounds) {
-        Drawer.drawDrawable(context, canvas, mDrawableRes, bounds);
+        DrawHelper.drawDrawable(context, canvas, mDrawableRes, bounds);
     }
 
 }

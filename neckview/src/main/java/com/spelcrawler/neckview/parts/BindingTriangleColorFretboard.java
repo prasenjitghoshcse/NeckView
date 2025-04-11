@@ -8,19 +8,19 @@ import android.graphics.RectF;
 
 import androidx.annotation.ColorInt;
 
-import com.spelcrawler.neckview.Drawer;
+import com.spelcrawler.neckview.DrawHelper;
 import com.spelcrawler.neckview.parts.base.FretboardBinding;
 
-public class TriangleColorFretboardBinding implements FretboardBinding {
+public class BindingTriangleColorFretboard implements FretboardBinding {
 
     @ColorInt
     private int mColor = Color.WHITE;
 
     private final Path mPath = new Path();
 
-    public TriangleColorFretboardBinding() {}
+    public BindingTriangleColorFretboard() {}
 
-    public TriangleColorFretboardBinding(int color) {
+    public BindingTriangleColorFretboard(int color) {
         mColor = color;
     }
 
@@ -38,7 +38,7 @@ public class TriangleColorFretboardBinding implements FretboardBinding {
         }
         mPath.close();
 
-        Drawer.drawPath(canvas, mPath, mColor);
+        DrawHelper.drawPath(canvas, mPath, mColor);
     }
 
 }
