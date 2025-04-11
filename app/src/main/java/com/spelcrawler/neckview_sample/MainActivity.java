@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements NeckView.OnNoteCl
         mNeckView.setOnNoteClickListener(this);
         mNeckView.setLeftHanded(false);
 
-
         setupGibson(mNeckView);
         mNeckView.setNoteMarks(createMarks(10));
     }
@@ -72,13 +71,13 @@ public class MainActivity extends AppCompatActivity implements NeckView.OnNoteCl
     private void setupJackson(NeckView neckView) {
         neckView.setupGuitarStrings(6, 3, R.dimen.stringGauge9, R.dimen.stringGauge48);
 
-        neckView.setFretboardNut(new NutColor(ContextCompat.getColor(this, R.color.black)));
-        neckView.setFretboardTop(new FretboardDark(R.drawable.neck_top));
+        neckView.setNut(new NutColor(ContextCompat.getColor(this, R.color.black)));
+        neckView.setFretboard(new FretboardDark(R.drawable.neck_top));
         neckView.setFret(new FretTextured(ContextCompat.getColor(this, R.color.fretColorGray)));
-        neckView.setFretboardFinish(new SideFinishColor(ContextCompat.getColor(this, R.color.white)));
-        neckView.setFretboardBinding(new PositionMarkerInlayTriangle(ContextCompat.getColor(this, R.color.white)));
-        neckView.setFretboardString(new StringTextured(ContextCompat.getColor(this, R.color.stringColor)));
-        neckView.setBoundFrets(Arrays.asList(1, 3, 5, 7, 9, 12));
+        neckView.setSideFinish(new SideFinishColor(ContextCompat.getColor(this, R.color.white)));
+        neckView.setPositionMarkerInlay(new PositionMarkerInlayTriangle(ContextCompat.getColor(this, R.color.white)));
+        neckView.setString(new StringTextured(ContextCompat.getColor(this, R.color.stringColor)));
+        neckView.setPositionMarkerInlayFrets(Arrays.asList(1, 3, 5, 7, 9, 12));
 
         neckView.requestLayout();
         neckView.invalidate();
@@ -87,12 +86,12 @@ public class MainActivity extends AppCompatActivity implements NeckView.OnNoteCl
     private void setupGibson(NeckView neckView) {
         neckView.setupGuitarStrings(6, 3, R.dimen.stringGauge9, R.dimen.stringGauge48);
 
-        neckView.setFretboardNut(new NutColor(ContextCompat.getColor(this, R.color.white)));
-        neckView.setFretboardTop(new FretboardDark(R.drawable.neck_top));
+        neckView.setNut(new NutColor(ContextCompat.getColor(this, R.color.white)));
+        neckView.setFretboard(new FretboardDark(R.drawable.neck_top));
         neckView.setFret(new FretTextured(ContextCompat.getColor(this, R.color.fretColorYellow)));
-        neckView.setFretboardBinding(new PositionMarkerInlayTrapeze(ContextCompat.getColor(this, R.color.white), 20f, 65f));
-        neckView.setFretboardString(new StringTextured(ContextCompat.getColor(this, R.color.stringColor)));
-        neckView.setBoundFrets(Arrays.asList(3, 5, 7, 9, 12));
+        neckView.setPositionMarkerInlay(new PositionMarkerInlayTrapeze(ContextCompat.getColor(this, R.color.white), 20f, 65f));
+        neckView.setString(new StringTextured(ContextCompat.getColor(this, R.color.stringColor)));
+        neckView.setPositionMarkerInlayFrets(Arrays.asList(3, 5, 7, 9, 12));
 
         neckView.requestLayout();
         neckView.invalidate();
@@ -101,12 +100,12 @@ public class MainActivity extends AppCompatActivity implements NeckView.OnNoteCl
     private void setupBass(NeckView neckView) {
         neckView.setupGuitarStrings(4, 4, R.dimen.stringGauge30, R.dimen.stringGauge105);
 
-        neckView.setFretboardNut(new NutColor(ContextCompat.getColor(this, R.color.white)));
-        neckView.setFretboardTop(new FretboardDark(R.drawable.neck_top));
+        neckView.setNut(new NutColor(ContextCompat.getColor(this, R.color.white)));
+        neckView.setFretboard(new FretboardDark(R.drawable.neck_top));
         neckView.setFret(new FretTextured(ContextCompat.getColor(this, R.color.fretColorGray)));
-        neckView.setFretboardBinding(new PositionMarkerInlayCircle(ContextCompat.getColor(this, R.color.white), 25f));
-        neckView.setFretboardString(new StringTextured(ContextCompat.getColor(this, R.color.stringColor)));
-        neckView.setBoundFrets(Arrays.asList(3, 5, 7, 9, 12));
+        neckView.setPositionMarkerInlay(new PositionMarkerInlayCircle(ContextCompat.getColor(this, R.color.white), 25f));
+        neckView.setString(new StringTextured(ContextCompat.getColor(this, R.color.stringColor)));
+        neckView.setPositionMarkerInlayFrets(Arrays.asList(3, 5, 7, 9, 12));
 
         neckView.requestLayout();
         neckView.invalidate();

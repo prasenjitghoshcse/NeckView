@@ -39,6 +39,11 @@ import java.util.List;
 //================================================================================================//
 //================================================================================================//
 public class NeckView extends View {
+    public enum FretboardFinishPosition {
+        TOP,
+        BOTTOM
+    }
+
     @NonNull
     private final RectF mBounds = new RectF();
     @NonNull
@@ -77,7 +82,7 @@ public class NeckView extends View {
     private List<? extends NoteMark> mNoteMarks = new ArrayList<>();
 
     @NonNull
-    private List<Integer> mBoundFrets = new ArrayList<>();
+    private List<Integer> mPositionMarkerInlayFrets = new ArrayList<>();
     @NonNull
     private List<GuitarString> mGuitarStrings = new ArrayList<>();
     @Nullable
@@ -95,6 +100,9 @@ public class NeckView extends View {
     private List<? extends NoteMark> mOldNoteMarks = new ArrayList<>();
 
 
+    //==================================================================================//
+    // Constructors
+    //==================================================================================//
     public NeckView(Context context) {
         super(context, null, 0);
     }
@@ -114,10 +122,17 @@ public class NeckView extends View {
         init(attrs, defStyleAttr);
     }
 
+    //==================================================================================//
+    //==================================================================================//
     protected void init(@Nullable AttributeSet attrs, int defStyleAttr) {
-        if (attrs != null) initAttributes(attrs, defStyleAttr);
+        if (attrs != null) {
+            initAttributes(attrs, defStyleAttr);
+        }
     }
 
+    //==================================================================================//
+    // Extracts attributes set in layout XML
+    //==================================================================================//
     protected void initAttributes(@NonNull AttributeSet attrs, int defStyleAttr) {
         TypedArray attributes = getContext().obtainStyledAttributes(attrs, R.styleable.NeckView, defStyleAttr, 0);
 
@@ -139,6 +154,7 @@ public class NeckView extends View {
         attributes.recycle();
     }
 
+    //==================================================================================//
     public int getFretCount() {
         return mFretCount;
     }
@@ -147,6 +163,7 @@ public class NeckView extends View {
         mFretCount = fretCount;
     }
 
+    //==================================================================================//
     public boolean isDrawZeroFret() {
         return mDrawZeroFret;
     }
@@ -155,6 +172,7 @@ public class NeckView extends View {
         mDrawZeroFret = drawZeroFret;
     }
 
+    //==================================================================================//
     public float getNutWidth() {
         return mNutWidth;
     }
@@ -163,6 +181,7 @@ public class NeckView extends View {
         mNutWidth = nutWidth;
     }
 
+    //==================================================================================//
     public float getFretWidth() {
         return mFretWidth;
     }
@@ -171,6 +190,7 @@ public class NeckView extends View {
         mFretWidth = fretWidth;
     }
 
+    //==================================================================================//
     public float getLastFretPadding() {
         return mLastFretPadding;
     }
@@ -179,6 +199,7 @@ public class NeckView extends View {
         mLastFretPadding = lastFretPadding;
     }
 
+    //==================================================================================//
     public float getTopFinishWidth() {
         return mTopFinishWidth;
     }
@@ -201,24 +222,27 @@ public class NeckView extends View {
         setBottomFinishWidth(finishWidth);
     }
 
+    //==================================================================================//
     @Nullable
-    public Fretboard getFretboardTop() {
+    public Fretboard getFretboard() {
         return mFretboard;
     }
 
-    public void setFretboardTop(@Nullable Fretboard fretboard) {
+    public void setFretboard(@Nullable Fretboard fretboard) {
         mFretboard = fretboard;
     }
 
+    //==================================================================================//
     @Nullable
-    public Nut getFretboardNut() {
+    public Nut getNut() {
         return mNut;
     }
 
-    public void setFretboardNut(@Nullable Nut nut) {
+    public void setNut(@Nullable Nut nut) {
         mNut = nut;
     }
 
+    //==================================================================================//
     @Nullable
     public Fret getFret() {
         return mFret;
@@ -228,33 +252,37 @@ public class NeckView extends View {
         mFret = fret;
     }
 
+    //==================================================================================//
     @Nullable
-    public SideFinish getFretboardFinish() {
+    public SideFinish getSideFinish() {
         return mSideFinish;
     }
 
-    public void setFretboardFinish(@Nullable SideFinish sideFinish) {
+    public void setSideFinish(@Nullable SideFinish sideFinish) {
         mSideFinish = sideFinish;
     }
 
+    //==================================================================================//
     @Nullable
-    public PositionMarkerInlay getFretboardBinding() {
+    public PositionMarkerInlay getPositionMarkerInlay() {
         return mPositionMarkerInlay;
     }
 
-    public void setFretboardBinding(@Nullable PositionMarkerInlay positionMarkerInlay) {
+    public void setPositionMarkerInlay(@Nullable PositionMarkerInlay positionMarkerInlay) {
         mPositionMarkerInlay = positionMarkerInlay;
     }
 
+    //==================================================================================//
     @Nullable
-    public String getFretboardString() {
+    public String getString() {
         return mString;
     }
 
-    public void setFretboardString(@Nullable String string) {
+    public void setString(@Nullable String string) {
         mString = string;
     }
 
+    //==================================================================================//
     @NonNull
     public List<? extends NoteMark> getNoteMarks() {
         return mNoteMarks;
@@ -264,6 +292,7 @@ public class NeckView extends View {
         mNoteMarks = noteMarks;
     }
 
+    //==================================================================================//
     public void setAnimationDuration(long animationDuration) {
         mAnimationDuration = animationDuration;
     }
@@ -276,7 +305,7 @@ public class NeckView extends View {
         mValueAnimator.setFloatValues(0f, 1f);
         mValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
+            public void onAnimationUpdate(@NonNull ValueAnimator animation) {
                 mAnimationValue = (float) animation.getAnimatedValue();
                 invalidate();
             }
@@ -285,15 +314,17 @@ public class NeckView extends View {
         mValueAnimator.start();
     }
 
+    //==================================================================================//
     @NonNull
-    public List<Integer> getBoundFrets() {
-        return mBoundFrets;
+    public List<Integer> getPositionMarkerInlayFrets() {
+        return mPositionMarkerInlayFrets;
     }
 
-    public void setBoundFrets(@NonNull List<Integer> boundFrets) {
-        mBoundFrets = boundFrets;
+    public void setPositionMarkerInlayFrets(@NonNull List<Integer> positionMarkerInlayFrets) {
+        mPositionMarkerInlayFrets = positionMarkerInlayFrets;
     }
 
+    //==================================================================================//
     @NonNull
     public List<GuitarString> getGuitarStrings() {
         return mGuitarStrings;
@@ -303,6 +334,7 @@ public class NeckView extends View {
         mGuitarStrings = guitarStrings;
     }
 
+    //==================================================================================//
     @Nullable
     public OnNoteClickListener getOnNoteClickListener() {
         return mOnNoteClickListener;
@@ -312,6 +344,7 @@ public class NeckView extends View {
         mOnNoteClickListener = onNoteClickListener;
     }
 
+    //==================================================================================//
     public void setupGuitarStrings(int stringCount, int woundedCount, float minWidth, float maxWidth) {
         float widthDifference = (maxWidth - minWidth) / stringCount;
         mGuitarStrings = new ArrayList<>();
@@ -328,6 +361,7 @@ public class NeckView extends View {
         setupGuitarStrings(stringCount, woundedCount, minWidthPixel, maxWidthPixel);
     }
 
+    //==================================================================================//
     public boolean isLeftHanded() {
         return mLeftHanded;
     }
@@ -336,12 +370,16 @@ public class NeckView extends View {
         mLeftHanded = leftHanded;
     }
 
+    //==================================================================================//
+    //==================================================================================//
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         mBounds.set(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
     }
 
+    //==================================================================================//
+    //==================================================================================//
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -352,15 +390,17 @@ public class NeckView extends View {
             mFretboardBounds.left += mNutWidth;
         }
         mFretPositions = FretCalculator.calculate(mFretboardBounds.width() - mLastFretPadding, mFretCount, true, false);
-        drawFretboardTop(canvas);
+        drawFretboard(canvas);
         drawNut(canvas);
-        drawFretboardFinish(canvas);
-        drawFretboardBindings(canvas);
+        drawSideFinish(canvas);
+        drawPositionMarkerInlay(canvas);
         drawFrets(canvas);
         drawStrings(canvas);
         drawNoteMarks(canvas);
     }
 
+    //==================================================================================//
+    //==================================================================================//
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (mOnNoteClickListener == null) return true;
@@ -383,13 +423,15 @@ public class NeckView extends View {
         return true;
     }
 
-    private void drawFretboardTop(Canvas canvas) {
+    //==================================================================================//
+    private void drawFretboard(Canvas canvas) {
         if (mFretboard == null) return;
         calculateFretboardTopBounds(mDrawBounds);
         mFretboard.draw(getContext(), canvas, mDrawBounds);
     }
 
-    private void drawFretboardFinish(Canvas canvas) {
+    //==================================================================================//
+    private void drawSideFinish(Canvas canvas) {
         if (mSideFinish == null) return;
         calculateFretboardFinishBounds(mDrawBounds, FretboardFinishPosition.TOP);
         mSideFinish.draw(getContext(), canvas, mDrawBounds);
@@ -397,12 +439,14 @@ public class NeckView extends View {
         mSideFinish.draw(getContext(), canvas, mDrawBounds);
     }
 
+    //==================================================================================//
     private void drawNut(Canvas canvas) {
         if (mNut == null) return;
         calculateNutBounds(mDrawBounds);
         mNut.draw(getContext(), canvas, mDrawBounds);
     }
 
+    //==================================================================================//
     private void drawFrets(Canvas canvas) {
         if (mFret == null) return;
 
@@ -412,9 +456,10 @@ public class NeckView extends View {
         }
     }
 
-    private void drawFretboardBindings(Canvas canvas) {
+    //==================================================================================//
+    private void drawPositionMarkerInlay(Canvas canvas) {
         if (mPositionMarkerInlay == null) return;
-        for (int fretIndex : mBoundFrets) {
+        for (int fretIndex : mPositionMarkerInlayFrets) {
             if (fretIndex < mFretCount) {
                 calculateFretboardBindingBounds(mDrawBounds, mFretPositions, fretIndex);
                 mPositionMarkerInlay.draw(getContext(), canvas, mDrawBounds, fretIndex, mLeftHanded);
@@ -422,6 +467,7 @@ public class NeckView extends View {
         }
     }
 
+    //==================================================================================//
     private void drawStrings(Canvas canvas) {
         if (mString == null) return;
         for (int i = 0; i < mGuitarStrings.size(); i++) {
@@ -431,6 +477,7 @@ public class NeckView extends View {
         }
     }
 
+    //==================================================================================//
     private void drawNoteMarks(Canvas canvas) {
         if (!mOldNoteMarks.isEmpty() && !mNoteMarks.isEmpty() && isMarksAnimatable(mOldNoteMarks) && isMarksAnimatable(mNoteMarks)) {
             drawAnimatableNoteMarks(canvas);
@@ -482,12 +529,14 @@ public class NeckView extends View {
         noteMark.draw(getContext(), canvas, mDrawBounds);
     }
 
+    //==================================================================================//
     protected void calculateFretboardTopBounds(RectF source) {
         source.set(mFretboardBounds);
         source.top += mTopFinishWidth;
         source.bottom -= mBottomFinishWidth;
     }
 
+    //==================================================================================//
     protected void calculateFretboardFinishBounds(RectF source, FretboardFinishPosition position) {
         source.left = mFretboardBounds.left;
         source.right = mBounds.right;
@@ -504,6 +553,7 @@ public class NeckView extends View {
         }
     }
 
+    //==================================================================================//
     protected void calculateNutBounds(RectF source) {
         source.set(mBounds);
         if (mLeftHanded) {
@@ -513,6 +563,7 @@ public class NeckView extends View {
         }
     }
 
+    //==================================================================================//
     protected void calculateFretBounds(RectF source, float fretCenterX) {
         if (mLeftHanded) fretCenterX = mFretboardBounds.right - fretCenterX;
 
@@ -522,6 +573,7 @@ public class NeckView extends View {
         source.bottom = mFretboardBounds.bottom;
     }
 
+    //==================================================================================//
     protected void calculateFretboardBindingBounds(RectF source, float[] frets, int fretIndex) {
         if (fretIndex == 0) throw new IllegalArgumentException("Can't draw binding on zero fret");
 
@@ -540,6 +592,7 @@ public class NeckView extends View {
         }
     }
 
+    //==================================================================================//
     protected void calculateStringBounds(RectF source, int stringIndex) {
         float heightForString = mFretboardBounds.height() / mGuitarStrings.size();
         float stringCenterY = mFretboardBounds.top + stringIndex * heightForString + heightForString / 2;
@@ -551,6 +604,7 @@ public class NeckView extends View {
         source.bottom = stringCenterY + stringWidth / 2;
     }
 
+    //==================================================================================//
     protected void calculateNoteMarkBounds(RectF source, float[] frets, int fretIndex, int stringIndex) {
         float heightForString = mFretboardBounds.height() / mGuitarStrings.size();
 
@@ -567,6 +621,7 @@ public class NeckView extends View {
         }
     }
 
+    //==================================================================================//
     private int findFretWithX(float[] frets, float x) {
         return mLeftHanded ? findFretWithXLeftHanded(frets, x) : findFretWithXRightHanded(frets, x);
     }
@@ -591,18 +646,15 @@ public class NeckView extends View {
         return frets.length;
     }
 
+    //==================================================================================//
     private int findStringWithY(float y) {
         float heightForString = mFretboardBounds.height() / mGuitarStrings.size();
 
         return (int) (y / heightForString);
     }
 
+    //==================================================================================//
     public interface OnNoteClickListener {
         void onNoteClick(int fret, int string);
-    }
-
-    public enum FretboardFinishPosition {
-        TOP,
-        BOTTOM
     }
 }
